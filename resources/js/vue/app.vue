@@ -2,13 +2,14 @@
     <div class="app-container">
         <div class="top-section">
             <h2 id="title">List App</h2>
-            <itemForm/>
+            <item-form/>
         </div>
-        <itemsList/>
+        <items-list :items="items"/>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import itemForm from './itemForm';
 import itemsList from './itemsList';
 
@@ -16,6 +17,25 @@ export default {
     components: {
         itemForm,
         itemsList
+    },
+    data: function() {
+        return {
+            items: []
+        }
+    },
+    methods: {
+        getItems() {
+            axios.get('api/items')
+            .then(response => {
+                this.items = response.data
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+    },
+    created() {
+        this.getItems();
     }
 }
 </script>
