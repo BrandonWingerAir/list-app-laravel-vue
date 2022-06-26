@@ -2,14 +2,18 @@
     <div class="app-container">
         <div class="top-section">
             <h2 id="title">List App</h2>
-            <item-form/>
+            <item-form
+                v-on:reloadItems="getItems()"
+            />
         </div>
-        <items-list :items="items"/>
+        <items-list
+            :items="items"
+            v-on:reloadItems="getItems()"
+        />
     </div>
 </template>
 
 <script>
-import axios from 'axios';
 import itemForm from './itemForm';
 import itemsList from './itemsList';
 

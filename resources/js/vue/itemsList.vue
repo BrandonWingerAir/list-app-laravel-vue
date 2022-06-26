@@ -1,21 +1,22 @@
 <template>
   <div>
     <div v-for="(item, index) in items" :key="index">
-        <item
+        <list-item
             :item="item"
             class="item"
+            v-on:itemStatus="$emit('reloadItems')"
         />
     </div>
   </div>
 </template>
 
 <script>
-import item from './item';
+import listItem from './listItem';
 
 export default {
     props: ['items'],
     components: {
-        item
+        listItem
     }
 }
 </script>
